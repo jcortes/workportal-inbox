@@ -16,19 +16,19 @@
 	<tbody>
 		<tr ng-repeat="(key, activity) in activities | orderByPriority | filter:search | orderBy:'employee'">
             <td data-title="'Actividad'">
-				<span ng-if="!activity.$edit">{{activity.activity}}</span>
+				<span>{{activity.activity}}</span>
 			</td>
             <td data-title="'Proceso'">
-				<span ng-if="!activity.$edit">{{activity.process}}</span>
+				<span>{{activity.process}}</span>
 			</td>
 			<td data-title="'Trabajador'">
-				<span ng-if="!activity.$edit">{{activity.employee}}</span>
+				<span>{{activity.employee}}</span>
 			</td>
             <td data-title="'Aprobacion'">
-				<span ng-if="!activity.$edit">{{activity.approved}}</span>
+				<span>{{activity.approved}}</span>
 			</td>
 			<td data-title="'Acciones'" width="200">
-				<a ng-if="!activity.$edit" href="" class="btn btn-primary btn-xs" ng-click="open(activity.$id)">Editar</a>
+				<a href="" class="btn btn-primary btn-xs" ng-click="open(activity.$id)">Editar</a>
 			</td>
 		</tr>
 	</tbody>
@@ -49,23 +49,23 @@
 			</div>
             
             <div class="control-group">
-				<label class="control-label" for="activityId">ID Actividad</label>
-				<div class="controls">
-					<input id="activityId" name="activityId" ng-model="activity.activityId" type="text" placeholder="ID Actividad" class="input-xlarge" required=""  ng-class="{error: activity.activityId.$invalid && !activity.activityId.$pristine}"/>
-				</div>
-			</div>
-            
-            <div class="control-group">
 				<label class="control-label" for="process">Proceso</label>
 				<div class="controls">
 					<input id="process" name="process" ng-model="activity.process" type="text" placeholder="Proceso" class="input-xlarge" required=""  ng-class="{error: activity.process.$invalid && !activity.process.$pristine}"/>
 				</div>
 			</div>
             
-            <div class="control-group">
-				<label class="control-label" for="processId">ID Proceso</label>
+            <div class="control-group" ng-class="{error: activity.requestDate.$invalid && !activity.requestDate.$pristine}">
+				<label class="control-label" for="requestDate">Fecha de Peticion</label>
 				<div class="controls">
-					<input id="processId" name="processId" ng-model="activity.processId" type="text" placeholder="ID Proceso" class="input-xlarge" required=""  ng-class="{error: activity.processId.$invalid && !activity.processId.$pristine}"/>
+					<input type="text" class="input-xlarge" datepicker-popup="yyyy-MM-dd" ng-model="activity.requestDate" is-open="opened" min="minDate" max="'2015-06-22'" datepicker-options="" date-disabled="disabled(date, mode)" ng-required="true" show-weeks="false" show-button-bar="false" />
+				</div>
+			</div>
+			
+			<div class="control-group">
+				<label class="control-label" for="designation">Aprobar</label>
+				<div class="controls">
+					<select id="designation" ng-model="activity.approved" name="designation" class="input-xlarge" ng-options="opt.name as opt.name for opt in designations"></select>
 				</div>
 			</div>
             
@@ -75,42 +75,20 @@
 					<input id="employee" name="employee" ng-model="activity.employee" type="text" placeholder="Empleado" class="input-xlarge" required=""  ng-class="{error: activity.employee.$invalid && !activity.employee.$pristine}"/>
 				</div>
 			</div>
-			
-			<div class="control-group" ng-class="{error: activity.beginDate.$invalid && !activity.beginDate.$pristine}">
-				<label class="control-label" for="beginDate">Fecha Inicial</label>
-				<div class="controls">
-					<input type="text" class="input-xlarge" datepicker-popup="yyyy-MM-dd" ng-model="activity.beginDate" is-open="opened" min="minDate" max="'2015-06-22'" datepicker-options="" date-disabled="disabled(date, mode)" ng-required="true" show-weeks="false" show-button-bar="false" />
-				</div>
-			</div>
-            <!--
-            <div class="control-group" ng-class="{error: activity.endDate.$invalid && !activity.endDate.$pristine}">
-				<label class="control-label" for="endDate">Fecha Final</label>
-				<div class="controls">
-					<input type="text" class="input-xlarge" datepicker-popup="yyyy-MM-dd" ng-model="activity.endDate" is-open="opened" min="minDate" max="'2015-06-22'" datepicker-options="" date-disabled="disabled(date, mode)" ng-required="true" show-weeks="false" show-button-bar="false" />
-				</div>
-			</div>
             
             <div class="control-group" ng-class="{error: activity.lastVacationOn.$invalid && !activity.lastVacationOn.$pristine}">
 				<label class="control-label" for="lastVacationOn">Ultimas Vacaciones</label>
 				<div class="controls">
-					<input type="text" class="input-xlarge" datepicker-popup="yyyy-MM-dd" ng-model="activity.lastVacationOn" is-open="opened" min="minDate" max="'2015-06-22'" datepicker-options="" date-disabled="disabled(date, mode)" ng-required="true" show-weeks="false" show-button-bar="false" />
+                    <input id="lastVacationOn" name="lastVacationOn" ng-model="activity.lastVacationOn" type="text" placeholder="Ultimas Vacaciones" class="input-xlarge" required=""  ng-class="{error: activity.lastVacationOn.$invalid && !activity.lastVacationOn.$pristine}"/>
 				</div>
 			</div>
             
-            <div class="control-group" ng-class="{error: activity.requestDate.$invalid && !activity.requestDate.$pristine}">
-				<label class="control-label" for="requestDate">Fecha de Peticion</label>
+            <div class="control-group">
+				<label class="control-label">Dias Solicitados</label>
 				<div class="controls">
-					<input type="text" class="input-xlarge" datepicker-popup="yyyy-MM-dd" ng-model="activity.requestDate" is-open="opened" min="minDate" max="'2015-06-22'" datepicker-options="" date-disabled="disabled(date, mode)" ng-required="true" show-weeks="false" show-button-bar="false" />
-				</div>
-			</div>-->
-			
-			<div class="control-group">
-				<label class="control-label" for="designation">Aprobar</label>
-				<div class="controls">
-					<select id="designation" ng-model="activity.approved" name="designation" class="input-xlarge" ng-options="opt.name as opt.name for opt in designations"></select>
+                    <label>{{days}}</label>
 				</div>
 			</div>
-			
 		</form>
 	</div>
 	<div class="modal-footer">
