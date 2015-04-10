@@ -83,6 +83,20 @@
 				</div>
 			</div>
             
+            <div class="control-group" ng-class="{error: activity.beginDate.$invalid && !activity.beginDate.$pristine}">
+				<label class="control-label" for="beginDate">Fecha Inicial</label>
+				<div class="controls">
+                    <input id="beginDate" name="beginDate" ng-model="activity.beginDate" type="text" placeholder="Fecha Inicial" class="input-xlarge" required=""  ng-class="{error: activity.beginDate.$invalid && !activity.beginDate.$pristine}"/>
+				</div>
+			</div>
+            
+            <div class="control-group" ng-class="{error: activity.endDate.$invalid && !activity.endDate.$pristine}">
+				<label class="control-label" for="endDate">Fecha Final</label>
+				<div class="controls">
+                    <input id="endDate" name="endDate" ng-model="activity.endDate" type="text" placeholder="Fecha Final" class="input-xlarge" required=""  ng-class="{error: activity.endDate.$invalid && !activity.endDate.$pristine}"/>
+				</div>
+			</div>
+            
             <div class="control-group">
 				<label class="control-label">Dias Solicitados</label>
 				<div class="controls">
