@@ -1,0 +1,74 @@
+<div class="modal-header">
+    <h3>Activity Form</h3>
+</div>
+<div class="modal-body">
+    <!--<alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>-->
+    <form name="activityForm" class="form-horizontal">
+        <div class="control-group">
+            <label class="control-label" for="activity">Actividad</label>
+            <div class="controls">
+                <input id="activity" name="activity" ng-model="activity.activity" type="text" placeholder="Actividad" class="input-xlarge" required=""  ng-class="{error: activity.activity.$invalid && !activity.activity.$pristine}"/>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="process">Proceso</label>
+            <div class="controls">
+                <input id="process" name="process" ng-model="activity.process" type="text" placeholder="Proceso" class="input-xlarge" required=""  ng-class="{error: activity.process.$invalid && !activity.process.$pristine}"/>
+            </div>
+        </div>
+
+        <div class="control-group" ng-class="{error: activity.requestDate.$invalid && !activity.requestDate.$pristine}">
+            <label class="control-label" for="requestDate">Fecha de Peticion</label>
+            <div class="controls">
+                <input type="text" class="input-xlarge" datepicker-popup="yyyy-MM-dd" ng-model="activity.requestDate" is-open="opened" min="minDate" max="'2015-06-22'" datepicker-options="" date-disabled="disabled(date, mode)" ng-required="true" show-weeks="false" show-button-bar="false" />
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="designation">Aprobar</label>
+            <div class="controls">
+                <select id="designation" ng-model="activity.approved" name="designation" class="input-xlarge" ng-options="opt.name as opt.name for opt in designations"></select>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="employee">Empleado</label>
+            <div class="controls">
+                <input id="employee" name="employee" ng-model="activity.employee" type="text" placeholder="Empleado" class="input-xlarge" required=""  ng-class="{error: activity.employee.$invalid && !activity.employee.$pristine}"/>
+            </div>
+        </div>
+
+        <div class="control-group" ng-class="{error: activity.lastVacationOn.$invalid && !activity.lastVacationOn.$pristine}">
+            <label class="control-label" for="lastVacationOn">Ultimas Vacaciones</label>
+            <div class="controls">
+                <input id="lastVacationOn" name="lastVacationOn" ng-model="activity.lastVacationOn" type="text" placeholder="Ultimas Vacaciones" class="input-xlarge" required=""  ng-class="{error: activity.lastVacationOn.$invalid && !activity.lastVacationOn.$pristine}"/>
+            </div>
+        </div>
+
+        <div class="control-group" ng-class="{error: activity.beginDate.$invalid && !activity.beginDate.$pristine}">
+            <label class="control-label" for="beginDate">Fecha Inicial</label>
+            <div class="controls">
+                <input id="beginDate" name="beginDate" ng-model="activity.beginDate" type="text" placeholder="Fecha Inicial" class="input-xlarge" required=""  ng-class="{error: activity.beginDate.$invalid && !activity.beginDate.$pristine}"/>
+            </div>
+        </div>
+
+        <div class="control-group" ng-class="{error: activity.endDate.$invalid && !activity.endDate.$pristine}">
+            <label class="control-label" for="endDate">Fecha Final</label>
+            <div class="controls">
+                <input id="endDate" name="endDate" ng-model="activity.endDate" type="text" placeholder="Fecha Final" class="input-xlarge" required=""  ng-class="{error: activity.endDate.$invalid && !activity.endDate.$pristine}"/>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label">Dias Solicitados</label>
+            <div class="controls">
+                <label>{{days}}</label>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button ng-click="save()" ng-if="activity.activityId" ng-disabled="activity.$invalid" class="btn btn-primary"><i class="icon-white icon-plus"></i> Guardar</button>
+    <button ng-click="cancel()" class="btn">Cancel</button>
+</div>

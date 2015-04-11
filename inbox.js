@@ -21,7 +21,7 @@ viewsModule.controller('InboxCtrl', function($rootScope, $scope, $modal, $locati
     $scope.open = function(activityId) {
         var activity = this.activity;
         var modalInstance = $modal.open({
-            templateUrl: 'add_activity_modal',
+            templateUrl: 'activity-template.html',
             controller: $scope.model,
             resolve: {
                 id: function() {
